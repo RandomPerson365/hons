@@ -1,0 +1,133 @@
+.philosophy-section {
+  padding: 6rem 2rem;
+  background-color: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.philosophy-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.philosophy-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.philosophy-header h2 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-primary);
+  margin: 1.5rem auto 0;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.philosophy-text {
+  padding: 3rem;
+}
+
+.philosophy-text h3 {
+  font-size: 1.75rem;
+  color: var(--color-on-surface);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.philosophy-text p {
+  color: rgba(234, 225, 221, 0.7);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.philosophy-image-container {
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+
+.philosophy-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.placeholder-roast-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1A1715, #2A2421);
+  background-image: radial-gradient(circle at center, rgba(233, 195, 73, 0.1) 0%, transparent 70%);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(22, 19, 17, 0.8), transparent);
+  z-index: 1;
+}
+
+.gold-accent-border {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--color-primary);
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.top-right {
+  top: -20px;
+  right: -20px;
+  border-bottom: none;
+  border-left: none;
+}
+
+.bottom-left {
+  bottom: -20px;
+  left: -20px;
+  border-top: none;
+  border-right: none;
+}
+
+@media (max-width: 992px) {
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .philosophy-image-container {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .philosophy-text {
+    padding: 2rem;
+  }
+  
+  .philosophy-header h2 {
+    font-size: 2rem;
+  }
+}

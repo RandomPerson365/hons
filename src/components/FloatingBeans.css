@@ -1,0 +1,17 @@
+.floating-beans-container {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-bean {
+  position: absolute;
+  background-image: url('/coffee-bean.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0.6) sepia(0.3);
+  will-change: transform, opacity;
+}

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;600;700&display=swap');
+
+:root {
+  --color-surface: #161311;
+  --color-surface-container-lowest: #110D0C;
+  --color-surface-container-low: #1F1B19;
+  --color-surface-container: #231F1D;
+  --color-surface-container-high: #2E2927;
+  --color-surface-container-highest: #393431;
+  
+  --color-primary: #E9C349;
+  --color-on-primary-container: #B39016;
+  --color-on-primary: #3C2F00;
+  
+  --color-on-surface: #EAE1DD;
+  --color-outline-variant: #504442;
+  
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+.glass-panel {
+  background: rgba(35, 31, 29, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(80, 68, 66, 0.15);
+  border-radius: 12px;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-on-primary-container));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-btn {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-on-primary-container));
+  color: var(--color-on-primary);
+  border: none;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(233, 195, 73, 0.2);
+}
+
+.gold-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(233, 195, 73, 0.4);
+}
+
+.bottom-line-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-outline-variant);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  padding: 12px 0;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bottom-line-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-primary);
+  box-shadow: 0 1px 0 var(--color-primary);
+}
+
+.bottom-line-input::placeholder {
+  color: rgba(234, 225, 221, 0.4);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-container-highest);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline-variant);
+}
+
+/* Base styles for app to allow absolute positioning of 3d canvas */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.canvas-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Let interactions pass through to scrollable content unless specified */
+}
+
+.content-container {
+  position: relative;
+  z-index: 10;
+}
