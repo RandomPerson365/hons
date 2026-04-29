@@ -33,18 +33,25 @@ export default function IntroReveal() {
       document.body.style.overflow = 'hidden';
     }
 
+    let touchStartY = 0;
+
+    const handleReveal = () => {
+      if (isAnimating || isRevealed) return;
+      setIsAnimating(true);
+      setIsRevealed(true);
+      setTimeout(() => {
+        document.body.style.overflow = 'auto';
+        setIsFullyHidden(true);
+        setIsAnimating(false);
+      }, 1800);
+    };
+
     const handleWheel = (e) => {
       if (isAnimating) return;
 
       // Scroll down → reveal site
       if (!isRevealed && e.deltaY > 0) {
-        setIsAnimating(true);
-        setIsRevealed(true);
-        setTimeout(() => {
-          document.body.style.overflow = 'auto';
-          setIsFullyHidden(true);
-          setIsAnimating(false);
-        }, 1800);
+        handleReveal();
       }
 
       // Scroll up from top → show intro again
@@ -57,9 +64,42 @@ export default function IntroReveal() {
       }
     };
 
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      // Swipe up (deltaY > 50px) → reveal site
+      if (!isRevealed && deltaY > 50) {
+        handleReveal();
+      }
+    };
+
     window.addEventListener('wheel', handleWheel, { passive: true });
-    return () => window.removeEventListener('wheel', handleWheel);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
   }, [isRevealed, isFullyHidden, isAnimating]);
+
+  const handleManualEnter = () => {
+    if (!isRevealed && !isAnimating) {
+      setIsAnimating(true);
+      setIsRevealed(true);
+      setTimeout(() => {
+        document.body.style.overflow = 'auto';
+        setIsFullyHidden(true);
+        setIsAnimating(false);
+      }, 1800);
+    }
+  };
 
   if (isFullyHidden) return null;
 
@@ -98,15 +138,17 @@ export default function IntroReveal() {
         className="scroll-hint"
         animate={{ opacity: isRevealed ? 0 : 1, y: isRevealed ? 20 : 0 }}
         transition={{ duration: 0.4 }}
+        onClick={handleManualEnter}
+        style={{ cursor: 'pointer', pointerEvents: 'auto' }}
       >
         <div className="scroll-mouse">
           <div className="scroll-wheel" />
         </div>
-        <span className="scroll-text">SCROLL TO ENTER</span>
+        <span className="scroll-text">SCROLL OR CLICK TO ENTER</span>
       </motion.div>
 
       {/* ───── CURTAIN PANELS ───── */}
-      <div className="intro-curtain">
+      <div className="intro-curtain" onClick={handleManualEnter} style={{ cursor: 'pointer' }}>
         {/* LEFT PANEL */}
         <motion.div
           className="curtain-panel curtain-left"
