@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import '../components/Menu.css';
 
 const seasonalItems = [
@@ -62,7 +62,18 @@ export default function MenuPage() {
               key={item.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{ 
+                scale: 1.02, 
+                y: -8,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
+              whileTap={{ scale: 0.98 }}
               className="menu-card glass-panel"
             >
               <div className="menu-img-container">

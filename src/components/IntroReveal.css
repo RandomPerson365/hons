@@ -342,3 +342,36 @@
     margin-right: 10%;
   }
 }
+
+@media (max-width: 480px) {
+  .intro-brand-title {
+    font-size: 2rem;
+  }
+  
+  .intro-brand-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+  }
+
+  .cup-body {
+    width: 60px;
+    height: 55px;
+  }
+
+  .cup-brand {
+    font-size: 1.2rem;
+  }
+
+  .cup-saucer {
+    width: 80px;
+    height: 8px;
+  }
+
+  .cup-handle {
+    width: 16px;
+    height: 28px;
+    right: -14px;
+    border-width: 6px;
+  }
+}

@@ -1,31 +1,57 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import './Hero.css';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20
+    }
+  },
+};
 
 export default function Hero() {
   return (
     <section className="hero-section">
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
         className="hero-content"
       >
-        <h2 className="hero-subtitle">The Art of Absence</h2>
-        <h1 className="hero-title">
+        <motion.h2 variants={itemVariants} className="hero-subtitle">The Art of Absence</motion.h2>
+        <motion.h1 variants={itemVariants} className="hero-title">
           House of <br />
           <span className="gold-gradient-text italic">No Sugar.</span>
-        </h1>
-        <p className="hero-description">
+        </motion.h1>
+        <motion.p variants={itemVariants} className="hero-description">
           In the world of ultra-premium hospitality, luxury is defined by what is removed—and what is amplified. 
           Experience the pure texture of the space and the flow of the sensory journey.
-        </p>
+        </motion.p>
         
-        <Link to="/menu" style={{ textDecoration: 'none' }}>
-          <button className="gold-btn">
-            Discover Our Menu
-          </button>
-        </Link>
+        <motion.div variants={itemVariants}>
+          <Link to="/menu" style={{ textDecoration: 'none' }}>
+            <button className="gold-btn">
+              Discover Our Menu
+            </button>
+          </Link>
+        </motion.div>
       </motion.div>
       
       <div className="scroll-indicator">

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { MapPin } from 'lucide-react';
 import './Locations.css';
 
@@ -32,7 +32,18 @@ export default function Locations() {
             target="_blank"
             rel="noreferrer"
             key={loc.id}
-            whileHover={{ scale: 1.02, rotateY: 5, rotateX: 5 }}
+            whileHover={{ 
+              scale: 1.02, 
+              rotateY: 8, 
+              rotateX: 4,
+              z: 50
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 300, 
+              damping: 15 
+            }}
             className="location-card glass-panel"
           >
             <div className="location-icon">
